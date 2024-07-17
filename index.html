@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/d1c08700a5.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+</head>
+
+<body>
+    <div id="header">
+        <div class="container">
+            <nav>
+                <img src="images/logo1.png" alt="logo" class="logo">
+                <div class="nav-toggle">
+                    <i class="fa-solid fa-bars menu-toggle" onclick="openMenu()"></i>
+                </div>
+                <ul id="sidemenu" class="hidden">
+                    <li><a href="#header">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <i class="fa-solid fa-xmark close-menu" onclick="closeMenu()"></i>
+                </ul>
+            </nav>
+
+            <div class="header-text">
+                <h3>Hello, It's Me</h3>
+                <h2>Dhruv Senjaliya</h2>
+                <h3>I am a <span class="text"></span></h3>
+
+            </div>
+        </div>
+    </div>
+    <!-- ---------------------about------------- -->
+    <div id="about">
+        <div class="container">
+            <div class="row">
+                <div class="about-col-2">
+                    <h1 class="sub-title">About Me</h1>
+                    <p>Experienced frontend developer with a growing understanding of backend technologies, proficient
+                        in
+                        frontend development and currently enhancing backend knowledge, seeking opportunities to further
+                        expand
+                        skills, eager to apply this combined expertise to drive innovation and deliver high-quality
+                        solutions to
+                        dynamic projects.</p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="openTab('skills')">Skills</p>
+                        <p class="tab-links" onclick="openTab('projects')">Academic Projects</p>
+                        <p class="tab-links" onclick="openTab('education')">Education</p>
+                    </div>
+                    <div class="tab-contents active-tab" id="skills">
+                        <ul>
+                            <li><span>Programming Language</span>
+                                <br>JavaScript (Intermediate)
+                                <br>C (Intermediate)
+                                <br>Python (Beginner)
+                                <br>Android (Beginner)
+                            </li>
+                            <li><span>Markup Language</span>
+                                <br>HTML
+                                <br>CSS
+                            </li>
+                            <li><span>Frameworks</span>
+                                <br>React (Intermediate)
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="projects">
+                        <ul>
+                            <li><span>Stock Management</span>
+                                <br>
+                                Tools: Html, CSS, JavaScript, PHP<br>
+                                Role: Team Leader<br>
+                                <span>My Plant Info</span><br>
+                                Tools: Android Studio, Machine Learning, Python for API<br>
+                                Role: Team Leader<br>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-contents" id="education">
+                        <ul>
+                            <li><span>Present</span>
+                                <br>
+                                Bachelor of Engineering-Information Technology at <br>
+                                Shantilalshah Engineering College Bhavnagar<br>
+                                <br>
+                                <span>May 2021</span><br>
+                                HSC at A Success School Jetpur <br>
+                                (Passing with 85%)<br>
+                                <br>
+                                <span>May 2019</span><br>
+                                SSC at Shree Navkar Education System Jetpur <br>
+                                (Passing with 92%)
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="about-col-1">
+                    <div class="image-wrapper">
+                        <img src="images/user11.png" alt="user">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- -----------Services---------- -->
+
+    <div id="services">
+        <div class="container">
+            <h1 class="sub-title">My Services</h1>
+            <div class="services-list">
+                <div>
+                    <i class="fa-solid fa-code"></i>
+                    <h2>Web Design</h2>
+                    <p>There has been an unparalleled confluence of the aesthetic power guiding my hand and discerning
+                        eye together with programming skills in HTML,CSS & JavaScript. Combining these qualities, I can
+                        build awesome websites that work smoothly whatever the device. "I have a creative mindset which
+                        I gather ideas, turn into best well designed projects focusing on the user experience." </p>
+
+                    <span id="details" class="details">
+                        <p>Am also staying current on design developments to help develop interesting and user-centred
+                            solutions that make a difference. Always striving to improve, I’m constantly innovating and
+                            fine-tuning the nitty-gritty to reanimate web projects with new ideas by marrying creativity
+                            & functionality.</p>
+                    </span>
+                    <a href="#" id="learnMore">Read more</a>
+                </div>
+
+
+                <div>
+                    <i class="fa-brands fa-app-store"></i>
+                    <h2>App Design</h2>
+                    <p>I use my creative imagination and engineering knowledge to create visually stimulating, intuitive
+                        mobile apps in the realm of app design. I have an interest in user behavior and understanding
+                        the interaction design principle, which helps me to put a seamless experience that resonates
+                        well with my peers. I make sure each and everything should be enhancing the usability,
+                        engagement from wireframing to prototyping.</p>
+                    <span id="details" class="details">
+                        <p> We create innovative and market-best designs by keeping ourselves informed about the new
+                            trends in web designing, platform guidelines that gave visionary fantastic yet user-friendly
+                            ideas. I take pride in craftsmanship and innovation so I spends my days trying to push the
+                            boundaries of what’s possible with mobile on a variety of different users' platforms.</p>
+                    </span>
+                    <a href="#" id="learnMore">Read more</a>
+                </div>
+
+
+                <div>
+                    <i class="fa-solid fa-crop-simple"></i>
+                    <h2>Backend Development</h2>
+                    <p>As I expand my expertise in backend technologies, I am building a solid foundation in languages
+                        like PHP and Python. My experience leading projects such as Stock Management and My Plant Info
+                        has given me practical insights into server-side development, database management, and API
+                        integration. This growing proficiency allows me to develop robust and scalable backend systems
+                        that enhance the overall functionality and performance of web applications. </p>
+                    <span id="details" class="details">
+                        <p> By continuously learning and applying best practices in backend development, I aim to
+                            deliver secure, efficient, and high-quality solutions that complement my frontend skills.
+                        </p>
+                    </span>
+                    <a href="#" id="learnMore">Read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ---------portfolio------- -->
+
+    <div id="portfolio">
+        <div class="container">
+            <h1 class="sub-title">My Work</h1>
+            <div class="work-list">
+                <div class="work">
+                    <img src="images/Work_1-vmake.jpeg" alt="work">
+                    <div class="layer">
+                        <h3>Stock Management System</h3>
+                        <p>
+                            <b>Tool:</b> HTML, CSS, JavaScript, PHP <br>
+                            <b> Role: </b>Team Leader<br>
+                        <div class="description">
+                            <b>Description:</b> <span class="description-text">
+                                Led the development of a comprehensive stock management system aimed at
+                                streamlining inventory tracking and management processes for businesses. Key features
+                                include real-time inventory updates, user authentication, and detailed reporting. This
+                                project involved close collaboration with team members, ensuring the delivery of a
+                                robust and user-friendly application.
+                            </span>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="work">
+                    <img src="images/work-22-vmake.jpeg" alt="work">
+                    <div class="layer">
+                        <h3>My Plant Info</h3>
+                        <p>
+                            <b> Tool: </b>Android Studio, Machine Learning, API <br>
+                            <b>Role: </b>Team Leader <br>
+                        <div class="description">
+                            <b>Description:</b> <span class="description-text">
+                                Directed the creation of an innovative Android application designed to
+                                provide detailed information about various plant species. Utilizing machine learning
+                                algorithms
+                                for plant identification, the app offers users care tips and a comprehensive database of
+                                plants. The project showcased my ability to integrate complex machine learning models
+                                with mobile
+                                application development, delivering a valuable tool for plant enthusiasts.
+                            </span>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-22-vmake.jpeg" alt="work">
+                    <div class="layer">
+                        <h3>Tic-Tac-Toe</h3>
+                        <p>
+                            <b> Tool: </b>HTML, CSS, JavaScript<br>
+                            <b>Role: </b>Single Handed<br>
+                        <div class="description">
+                            <b>Description:</b> <span class="description-text">
+                                Led the development of a Tic-Tac-Toe game using HTML, CSS, and JavaScript.
+                            </span>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+                <div class="work">
+                    <img src="images/work-22-vmake.jpeg" alt="work">
+                    <div class="layer">
+                        <h3>Rock-Paper-Sicssor</h3>
+                        <p>
+                            <b> Tool: </b>HTML, CSS, JavaScript<br>
+                            <b>Role: </b>Single Handed<br>
+                        <div class="description">
+                            <b>Description:</b> <span class="description-text">
+                                Developed a Rock-Paper-Scissors game using HTML, CSS, and JavaScript.
+                            </span>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ----------------contact-------- -->
+    <div id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="contact-left">
+                    <h1 class="sub-title">Contact Me</h1>
+                    <p><i class="fa-solid fa-paper-plane"></i>senjaliyadhruvr@gmail.com</p>
+                    <p><i class="fa-solid fa-square-phone"></i>+918780905035</p>
+                    <div class="social-icons">
+                        <a href="https://web.skype.com/" target="_blank"><i class="fa-brands fa-skype"></i></a>
+                        <a href="https://x.com/Dhruv_Patel1204" target="_blank"><i
+                                class="fa-brands fa-twitter-square"></i></a>
+                        <a href="https://www.instagram.com/its_me_dhruv_0.5/" target="_blank"><i
+                                class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/senjaliya-dhruv-93bb3130b/" target="_blank"><i
+                                class="fa-brands fa-linkedin"></i></a>
+                    </div>
+                    <a href="images/my-Resume.pdf" download class="btn btn2">Download Resume</a>
+                </div>
+                <div class="contact-right">
+                    <form name="submit-to-google-sheet">
+                        <input type="text" name="Name" placeholder="Your Name" required>
+                        <input type="email" name="Email" placeholder="Your Email" required>
+                        <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
+                        <button type="submit" class="btn" onclick="handleClick()">Submit</button>
+                    </form>
+                    <span id="msg"></span>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>Copyright © Senjaliya Dhruv.<i class="fa-solid fa-heart"></i> All right reserved.</i></p>
+        </div>
+
+    </div>
+    
+<script src="portfolio.js"></script>
+</body>
+
+</html>
