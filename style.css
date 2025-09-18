@@ -17,12 +17,10 @@
     --bg-tertiary: #e2e8f0;
     --card-bg: #ffffff;
     --border-color: #e2e8f0;
-    --bg-gradient: linear-gradient(
-        135deg,
-        #0ea5e9 0%,
-        #3b82f6 50%,
-        #6366f1 100%
-    );
+    --bg-gradient: linear-gradient(135deg,
+            #0ea5e9 0%,
+            #3b82f6 50%,
+            #6366f1 100%);
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
@@ -80,21 +78,17 @@ body.dark-mode .bg-animation {
 
 .cloud {
     position: absolute;
-    background: linear-gradient(
-        45deg,
-        rgba(14, 165, 233, 0.1),
-        rgba(59, 130, 246, 0.05)
-    );
+    background: linear-gradient(45deg,
+            rgba(14, 165, 233, 0.1),
+            rgba(59, 130, 246, 0.05));
     border-radius: 50px;
     animation: float 20s infinite linear;
 }
 
 body.dark-mode .cloud {
-    background: linear-gradient(
-        45deg,
-        rgba(14, 165, 233, 0.05),
-        rgba(59, 130, 246, 0.02)
-    );
+    background: linear-gradient(45deg,
+            rgba(14, 165, 233, 0.05),
+            rgba(59, 130, 246, 0.02));
 }
 
 .cloud1 {
@@ -127,13 +121,13 @@ body.dark-mode .cloud {
     0% {
         transform: translateX(-100px) translateY(0px) rotate(0deg);
     }
+
     50% {
-        transform: translateX(calc(100vw + 50px)) translateY(-20px)
-            rotate(180deg);
+        transform: translateX(calc(100vw + 50px)) translateY(-20px) rotate(180deg);
     }
+
     100% {
-        transform: translateX(calc(200vw + 100px)) translateY(0px)
-            rotate(360deg);
+        transform: translateX(calc(200vw + 100px)) translateY(0px) rotate(360deg);
     }
 }
 
@@ -258,12 +252,14 @@ body.dark-mode .navbar.scrolled {
     max-width: 1200px;
     width: 100%;
     padding: 0 2rem;
+    position: relative;
 }
 
 .hero-title {
     font-size: 3.5rem;
     font-weight: 700;
     margin-bottom: 1rem;
+    margin-top: 2rem;
     line-height: 1.1;
     color: var(--text-primary);
 }
@@ -362,198 +358,900 @@ body.dark-mode .navbar.scrolled {
     box-shadow: var(--shadow-lg);
 }
 
+
+/* Profile Photo Styles */
+.profile-photo-container {
+    position: relative;
+    width: 420px;
+    height: 420px;
+    z-index: 10;
+}
+
+.profile-photo {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid white;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+        0 8px 16px rgba(14, 165, 233, 0.2);
+    transition: all 0.3s ease;
+    animation: photo-pulse 4s ease-in-out infinite;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15),
+        0 12px 24px rgba(14, 165, 233, 0.3);
+}
+
+.photo-glow {
+    position: absolute;
+    top: -20px;
+    left: -20px;
+    right: -20px;
+    bottom: -20px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, #0ea5e9, #3b82f6, #6366f1);
+    opacity: 0.2;
+    animation: glow-rotate 8s linear infinite;
+    z-index: -1;
+}
+
+@keyframes photo-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1),
+            0 8px 16px rgba(14, 165, 233, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15),
+            0 12px 24px rgba(14, 165, 233, 0.4);
+    }
+}
+
+@keyframes glow-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Dark mode adjustments for profile photo */
+body.dark-mode .profile-photo {
+    border-color: var(--bg-secondary);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+        0 8px 16px rgba(14, 165, 233, 0.3);
+}
+
+body.dark-mode .profile-photo:hover {
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
+        0 12px 24px rgba(14, 165, 233, 0.4);
+}
+
+
 /* Hero Visual */
 .hero-visual {
     position: relative;
     height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .floating-icons {
-    position: relative;
+    position: absolute;
     width: 100%;
     height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 5;
 }
 
 .icon-float {
     position: absolute;
-    width: 80px;
-    height: 80px;
-    border-radius: 20px;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
+    font-size: 1.8rem;
     color: white;
-    box-shadow: var(--shadow-lg);
-    animation: float-vertical 3s ease-in-out infinite;
-    transition: var(--transition);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    /* Prevent images from overflowing */
 }
+
+/* Scale all images and SVGs inside icon-float containers */
+.icon-float img,
+.icon-float svg {
+    max-width: 70%;
+    /* Scale to 70% of container width */
+    max-height: 70%;
+    /* Scale to 70% of container height */
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    /* Maintain aspect ratio */
+    display: block;
+}
+
+/* Font Awesome icons remain at font-size */
+.icon-float i {
+    font-size: inherit;
+}
+
+.icon-float:hover {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    z-index: 15;
+}
+
+/* Fixed orbital animations with unique positioning */
 
 .hero-aws {
-    background: linear-gradient(45deg, #ff9900, #ff6600, #ff4500, #ff7f00);
-    background-size: 300% 300%;
-    animation: aws-gradient 3s ease infinite,
-        float-vertical 3s ease-in-out infinite;
-    top: 10%;
-    left: 20%;
-    animation-delay: 0s;
-}
-
-@keyframes aws-gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: linear-gradient(45deg, #feb13c, #ff6600);
+    background-size: 200% 200%;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: aws-gradient 3s ease infinite, smooth-orbit-1 20s linear infinite;
+    animation-delay: 0s, 0s;
 }
 
 .hero-docker {
-    background: linear-gradient(45deg, #2496ed, #0db7ed, #1e90ff, #00bfff);
-    background-size: 300% 300%;
-    animation: docker-gradient 3.5s ease infinite,
-        float-vertical 3.2s ease-in-out infinite;
-    top: 40%;
-    right: 10%;
-    animation-delay: 0.5s;
-}
-
-@keyframes docker-gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: linear-gradient(45deg, #2496ed, #075d77);
+    background-size: 200% 200%;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: docker-gradient 3.5s ease infinite, smooth-orbit-2 24s linear infinite reverse;
+    animation-delay: 0s, -4s;
 }
 
 .hero-k8s {
-    background: linear-gradient(45deg, #326ce5, #1e40af, #3b82f6, #2563eb);
-    background-size: 300% 300%;
-    animation: k8s-gradient 4.2s ease infinite,
-        float-vertical 3.8s ease-in-out infinite;
+    background: linear-gradient(45deg, #326ce5, #2358ad);
+    background-size: 200% 200%;
     top: 50%;
-    left: 10%;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    animation-delay: 1s;
-}
-
-@keyframes k8s-gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: k8s-gradient 4.2s ease infinite, smooth-orbit-3 26s linear infinite;
+    animation-delay: 0s, -8s;
 }
 
 .hero-terraform {
-    background: linear-gradient(45deg, #623ce4, #7c3aed, #8b5cf6, #a855f7);
-    background-size: 300% 300%;
-    animation: terraform-gradient 3.8s ease infinite,
-        float-vertical 4.1s ease-in-out infinite;
-    top: 70%;
-    right: 20%;
-    font-family: "Courier New", monospace;
-    font-weight: bold;
-    animation-delay: 1.5s;
-}
-
-@keyframes terraform-gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: linear-gradient(45deg, #623ce4, #6338c6);
+    background-size: 200% 200%;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: terraform-gradient 3.8s ease infinite, smooth-orbit-1 22s linear infinite reverse;
+    animation-delay: 0s, -11s;
 }
 
 .hero-jenkins {
-    background: linear-gradient(45deg, #d33833, #dc2626, #ef4444, #f87171);
-    background-size: 300% 300%;
-    animation: jenkins-gradient 2.8s ease infinite,
-        float-vertical 3.3s ease-in-out infinite;
-    top: 78%;
-    left: 30%;
-    animation-delay: 2s;
-}
-
-@keyframes jenkins-gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: linear-gradient(45deg, #d33833, #dc5555);
+    background-size: 200% 200%;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: jenkins-gradient 2.8s ease infinite, smooth-orbit-2 28s linear infinite;
+    animation-delay: 0s, -14s;
 }
 
 .hero-azure {
-    background: linear-gradient(45deg, #0078d4, #0369a1, #0284c7, #0ea5e9);
-    background-size: 300% 300%;
-    animation: azure-gradient 3.3s ease infinite,
-        float-vertical 2.9s ease-in-out infinite;
-    top: 37%;
-    left: 40%;
-    animation-delay: 2.5s;
-}
-
-@keyframes azure-gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+    background: linear-gradient(45deg, #0078d4, #086d9c);
+    background-size: 200% 200%;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: azure-gradient 2s ease infinite, smooth-orbit-3 30s linear infinite reverse;
+    animation-delay: 0s, -18s;
 }
 
 .hero-gcp {
-    background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
+    background: linear-gradient(45deg, #4285f4, #ea4335, #fbbc05, #34a853);
     background-size: 300% 300%;
-    animation: gcp-gradient-element 4s ease infinite,
-        float-vertical 3.5s ease-in-out infinite;
-    top: 12%;
-    left: 60%;
-    position: relative;
-    animation-delay: 3s;
+    top: 50%;
+    left: 50%;
+    margin: -35px 0 0 -35px;
+    animation: gcp-gradient 4s ease infinite, smooth-orbit-1 25s linear infinite;
+    animation-delay: 0s, -12.5s;
 }
 
-@keyframes gcp-gradient-element {
+/* IMPROVED: Smooth orbital animations with better spacing and natural movement */
+@keyframes smooth-orbit-1 {
     0% {
+        transform: rotate(0deg) translateX(240px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(240px) rotate(-360deg);
+    }
+}
+
+@keyframes smooth-orbit-2 {
+    0% {
+        transform: rotate(0deg) translateX(160px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(160px) rotate(-360deg);
+    }
+}
+
+@keyframes smooth-orbit-3 {
+    0% {
+        transform: rotate(0deg) translateX(200px) rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg) translateX(200px) rotate(-360deg);
+    }
+}
+
+/* Gradient animations */
+@keyframes aws-gradient {
+
+    0%,
+    100% {
         background-position: 0% 50%;
     }
+
     50% {
         background-position: 100% 50%;
     }
+}
+
+@keyframes docker-gradient {
+
+    0%,
     100% {
         background-position: 0% 50%;
     }
+
+    50% {
+        background-position: 100% 50%;
+    }
 }
-@keyframes float-vertical {
+
+@keyframes k8s-gradient {
+
     0%,
     100% {
-        transform: translateY(0px);
+        background-position: 0% 50%;
     }
+
     50% {
-        transform: translateY(-20px);
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes terraform-gradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes jenkins-gradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes azure-gradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes gcp-gradient {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* ===== RESPONSIVE BREAKPOINTS ===== */
+
+/* Extra Large Screens (1400px+) */
+@media (min-width: 1400px) {
+    .profile-photo-container {
+        width: 480px;
+        height: 480px;
+    }
+
+    .hero-visual {
+        height: 600px;
+    }
+
+    .icon-float {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(280px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(280px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(200px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(200px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(240px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(240px) rotate(-360deg);
+        }
+    }
+}
+
+/* Large Screens (1200px - 1399px) */
+@media (max-width: 1399px) and (min-width: 1200px) {
+    .profile-photo-container {
+        width: 380px;
+        height: 380px;
+    }
+
+    .hero-visual {
+        height: 480px;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(220px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(220px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(140px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(140px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(180px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(180px) rotate(-360deg);
+        }
+    }
+}
+
+/* Medium Screens (992px - 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .profile-photo-container {
+        width: 320px;
+        height: 320px;
+    }
+
+    .hero-visual {
+        height: 400px;
+    }
+
+    .icon-float {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+        margin: -30px 0 0 -30px;
+    }
+
+    .icon-float img,
+    .icon-float svg {
+        max-width: 65%;
+        max-height: 65%;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(180px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(180px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(120px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(120px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(150px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(150px) rotate(-360deg);
+        }
+    }
+}
+
+/* Small-Medium Screens (768px - 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .profile-photo-container {
+        width: 280px;
+        height: 280px;
+    }
+
+    .hero-visual {
+        height: 350px;
+    }
+
+    .icon-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+        margin: -25px 0 0 -25px;
+    }
+
+    .icon-float img,
+    .icon-float svg {
+        max-width: 60%;
+        max-height: 60%;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(170px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(170px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(70px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(70px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(120px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(120px) rotate(-360deg);
+        }
+    }
+}
+
+/* Small Screens (576px - 767px) */
+@media (max-width: 768px) and (min-width: 576px) {
+    .profile-photo-container {
+        width: 220px;
+        height: 220px;
+        margin: 1rem auto 1rem;
+    }
+
+    .profile-photo {
+        border: 4px solid white;
+    }
+
+    .photo-glow {
+        top: -15px;
+        left: -15px;
+        right: -15px;
+        bottom: -15px;
+    }
+
+    .hero-visual {
+        height: 280px;
+    }
+
+    .floating-icons {
+        height: 280px;
+    }
+
+    .icon-float {
+        width: 45px;
+        height: 45px;
+        font-size: 1.1rem;
+        margin: -22.5px 0 0 -22.5px;
+    }
+
+    .icon-float img,
+    .icon-float svg {
+        max-width: 55%;
+        max-height: 55%;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(130px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(130px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(55px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(55px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(95px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(95px) rotate(-360deg);
+        }
+    }
+
+
+}
+
+/* Extra Small Screens (480px and below) */
+@media (max-width: 576px) {
+    .profile-photo-container {
+        width: 280px;
+        height: 280px;
+        margin: 2rem auto 1rem;
+    }
+
+    .profile-photo {
+        border: 3px solid white;
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1),
+            0 6px 12px rgba(14, 165, 233, 0.2);
+    }
+
+    .profile-photo:hover {
+        transform: scale(1.03);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+            0 8px 16px rgba(14, 165, 233, 0.3);
+    }
+
+    .photo-glow {
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+    }
+
+    .hero-visual {
+        height: 220px;
+    }
+
+    .floating-icons {
+        height: 300px;
+    }
+
+    .icon-float {
+        width: 45px;
+        height: 45px;
+        font-size: 0.9rem;
+        margin: -17.5px 0 0 -17.5px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    .icon-float:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .icon-float img,
+    .icon-float svg {
+        max-width: 50%;
+        max-height: 50%;
+    }
+
+    .hero-aws {
+        top: 56%;
+        left: 50%;
+    }
+
+    .hero-gcp {
+        top: 56%;
+        left: 50%;
+    }
+
+    .hero-terraform {
+        top: 56%;
+        left: 50%;
+    }
+
+    .hero-azure {
+        top: 55%;
+        left: 49%;
+    }
+
+    .hero-k8s {
+        top: 55%;
+        left: 49%;
+    }
+
+    .hero-jenkins {
+        top: 55%;
+        left: 47%;
+    }
+
+    .hero-docker {
+        top: 55%;
+        left: 47%;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(155px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(155px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(50px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(50px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(115px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(115px) rotate(-360deg);
+        }
+    }
+
+    /* Reduce animation intensity for better mobile performance */
+    @keyframes photo-pulse {
+
+        0%,
+        100% {
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1),
+                0 6px 12px rgba(14, 165, 233, 0.2);
+        }
+
+        50% {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15),
+                0 8px 16px rgba(14, 165, 233, 0.3);
+        }
+    }
+
+    .dark-mode-toggle {
+        bottom: 25px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+    }
+}
+
+/* Ultra Small Screens (360px and below) */
+@media (max-width: 360px) {
+    .profile-photo-container {
+        width: 220px;
+        height: 220px;
+        margin: 2rem auto 1rem;
+    }
+
+    .hero-visual {
+        height: 180px;
+    }
+
+    .floating-icons {
+        height: 180px;
+    }
+
+    .icon-float {
+        width: 35px;
+        height: 35px;
+        font-size: 0.8rem;
+        margin: -15px 0 0 -15px;
+    }
+
+    .icon-float img,
+    .icon-float svg {
+        max-width: 45%;
+        max-height: 45%;
+    }
+
+    .hero-aws {
+        top: 78%;
+        left: 49%;
+    }
+
+    .hero-gcp {
+        top: 78%;
+        left: 49%;
+    }
+
+    .hero-terraform {
+        top: 78%;
+        left: 49%;
+    }
+
+    .hero-azure {
+        top: 77%;
+        left: 49%;
+    }
+
+    .hero-k8s {
+        top: 77%;
+        left: 49%;
+    }
+
+    .hero-jenkins {
+        top: 71%;
+        left: 47%;
+    }
+
+    .hero-docker {
+        top: 71%;
+        left: 47%;
+    }
+
+    @keyframes smooth-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(130px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(130px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-2 {
+        0% {
+            transform: rotate(0deg) translateX(40px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(40px) rotate(-360deg);
+        }
+    }
+
+    @keyframes smooth-orbit-3 {
+        0% {
+            transform: rotate(0deg) translateX(85px) rotate(0deg);
+        }
+
+        100% {
+            transform: rotate(360deg) translateX(85px) rotate(-360deg);
+        }
+    }
+}
+
+/* High DPI / Retina Display Adjustments */
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+    .profile-photo {
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+    }
+}
+
+/* Reduced Motion Preferences */
+@media (prefers-reduced-motion: reduce) {
+
+    .profile-photo,
+    .icon-float {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0s !important;
+    }
+
+    .photo-glow {
+        animation: none !important;
+    }
+
+    .hero-aws,
+    .hero-docker,
+    .hero-k8s,
+    .hero-terraform,
+    .hero-jenkins,
+    .hero-azure,
+    .hero-gcp {
+        animation: none !important;
+    }
+}
+
+/* Print Styles */
+@media print {
+
+    .hero-visual,
+    .floating-icons {
+        display: none;
+    }
+
+    .profile-photo-container {
+        width: 200px;
+        height: 200px;
+        page-break-inside: avoid;
+    }
+
+    .profile-photo {
+        border: 2px solid #000;
+        box-shadow: none;
+        animation: none;
+    }
+
+    .photo-glow {
+        display: none;
     }
 }
 
@@ -585,10 +1283,12 @@ body.dark-mode .navbar.scrolled {
 }
 
 @keyframes scroll-bounce {
+
     0%,
     100% {
         opacity: 0.3;
     }
+
     50% {
         opacity: 1;
     }
@@ -768,24 +1468,29 @@ section {
     font-size: 0.9rem;
     color: var(--text-light);
 }
+
 .skill-items .aws {
     background: linear-gradient(45deg, #ff9900, #ff6600, #ff4500, #ff7f00);
     background-size: 300% 300%;
     animation: aws-gradient 3s ease infinite;
 }
+
 .skill-items .azure {
     background: linear-gradient(45deg, #0078d4, #005ea1, #004080, #0066cc);
     background-size: 300% 300%;
     animation: azure-gradient 3s ease infinite;
 }
+
 .skill-items .gcp {
     background: linear-gradient(135deg, #4285f4, #ea4335, #fbbc05, #34a853);
     background-size: 300% 300%;
     animation: gcp-gradient-element 4s ease infinite;
 }
+
 .skill-name {
     color: #ffffff;
 }
+
 .skill-services {
     color: #ffffff;
 }
@@ -793,16 +1498,20 @@ section {
 .skill-item.aws:hover .skill-name {
     color: #ff9900;
 }
+
 .skill-item.azure:hover .skill-name {
     color: #0078d4;
 }
+
 .skill-item.gcp:hover .skill-name {
     color: #4285f4;
 }
+
 .skill-item:hover {
     background: var(--bg-tertiary);
     border-color: var(--border-color);
 }
+
 .skill-item:hover .skill-services {
     color: var(--text-primary);
 }
@@ -868,12 +1577,10 @@ section {
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(255, 255, 255, 0.2),
-        transparent
-    );
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
     transition: left 0.5s ease;
 }
 
@@ -919,6 +1626,7 @@ section {
     position: relative;
     overflow: hidden;
 }
+
 .progress-fill {
     height: 100%;
     background: var(--bg-gradient);
@@ -932,6 +1640,7 @@ section {
     color: var(--bg-primary);
     min-width: 35px;
 }
+
 .skill-item:hover .percentage {
     font-size: 0.8rem;
     font-weight: 600;
@@ -964,11 +1673,9 @@ section {
     top: 0;
     width: 3px;
     height: 100%;
-    background: linear-gradient(
-        to bottom,
-        var(--primary-color),
-        var(--accent-color)
-    );
+    background: linear-gradient(to bottom,
+            var(--primary-color),
+            var(--accent-color));
     border-radius: 2px;
 }
 
@@ -1291,11 +1998,6 @@ body.dark-mode .footer-links a {
         font-size: 3rem;
     }
 
-    .icon-float {
-        width: 60px;
-        height: 60px;
-        font-size: 1.5rem;
-    }
 }
 
 @media (max-width: 768px) {
@@ -1340,16 +2042,18 @@ body.dark-mode .footer-links a {
     .hero-content {
         grid-template-columns: 1fr;
         text-align: center;
-        gap: 2rem;
+        gap: 1rem;
     }
 
     .hero-title {
         font-size: 2.5rem;
+
     }
 
     .hero-visual {
-        height: 300px;
+        height: auto;
         order: -1;
+        display: block;
     }
 
     .about-content,
@@ -1395,22 +2099,14 @@ body.dark-mode .footer-links a {
     .nav-container {
         padding: 1rem;
     }
-
-    .icon-float {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
-    }
-
-    .floating-icons {
-        height: 250px;
-    }
 }
+
 @media (max-width: 480px) {
     .scroll-indicator {
         display: none;
     }
 }
+
 @media (max-width: 480px) {
     .hero-title {
         font-size: 2rem;
@@ -1511,6 +2207,7 @@ body.dark-mode .footer-links a {
     0% {
         transform: rotate(0deg);
     }
+
     100% {
         transform: rotate(360deg);
     }
@@ -1554,6 +2251,7 @@ body.dark-mode .footer-links a {
 
 /* Print Styles */
 @media print {
+
     .navbar,
     .dark-mode-toggle,
     .scroll-indicator,
