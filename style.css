@@ -703,6 +703,16 @@ body.dark-mode .profile-photo:hover {
         font-size: 2rem;
     }
 
+    .hero-jenkins {
+        top: 40%;
+        left: 44%;
+    }
+
+    .hero-docker {
+        top: 40%;
+        left: 44%;
+    }
+
     @keyframes smooth-orbit-1 {
         0% {
             transform: rotate(0deg) translateX(280px) rotate(0deg);
@@ -715,11 +725,11 @@ body.dark-mode .profile-photo:hover {
 
     @keyframes smooth-orbit-2 {
         0% {
-            transform: rotate(0deg) translateX(200px) rotate(0deg);
+            transform: rotate(0deg) translateX(80px) rotate(0deg);
         }
 
         100% {
-            transform: rotate(360deg) translateX(200px) rotate(-360deg);
+            transform: rotate(360deg) translateX(80px) rotate(-360deg);
         }
     }
 
@@ -745,6 +755,17 @@ body.dark-mode .profile-photo:hover {
         height: 480px;
     }
 
+    .hero-jenkins {
+        top: 55%;
+        left: 47%;
+    }
+
+    .hero-docker {
+        top: 55%;
+        left: 47%;
+    }
+
+
     @keyframes smooth-orbit-1 {
         0% {
             transform: rotate(0deg) translateX(220px) rotate(0deg);
@@ -757,11 +778,11 @@ body.dark-mode .profile-photo:hover {
 
     @keyframes smooth-orbit-2 {
         0% {
-            transform: rotate(0deg) translateX(140px) rotate(0deg);
+            transform: rotate(0deg) translateX(80px) rotate(0deg);
         }
 
         100% {
-            transform: rotate(360deg) translateX(140px) rotate(-360deg);
+            transform: rotate(360deg) translateX(80px) rotate(-360deg);
         }
     }
 
