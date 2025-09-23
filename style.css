@@ -1909,7 +1909,7 @@ section {
     cursor: pointer;
     box-shadow: var(--shadow-lg);
     transition: var(--transition);
-    z-index: 1000;
+    z-index: 9999;
     display: flex;
     align-items: center;
     justify-content: center;
