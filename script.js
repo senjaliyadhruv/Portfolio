@@ -269,11 +269,9 @@ function initNavbarScrollEffect() {
 
     window.addEventListener('scroll', function () {
         if (window.scrollY > 100) {
-            navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-            navbar.style.boxShadow = '0 4px 6px -1px rgba(0, 0, 0, 0.1)';
+            navbar.classList.add('scrolled');
         } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.95)';
-            navbar.style.boxShadow = 'none';
+            navbar.classList.remove('scrolled');
         }
     });
 }
@@ -389,70 +387,20 @@ function throttle(func, wait) {
 window.addEventListener('scroll', throttle(updateActiveLink, 100));
 
 // Add loading screen
-function initLoadingScreen() {
-    const loader = document.createElement('div');
-    loader.id = 'loader';
-    loader.innerHTML = `
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-            <p>Loading...</p>
-        </div>
-    `;
+window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
 
-    // Add loader styles
-    const loaderStyles = `
-        #loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #6366f1 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            opacity: 1;
-            transition: opacity 0.5s ease;
-        }
-        
-        .loader-content {
-            text-align: center;
-            color: white;
-        }
-        
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 3px solid rgba(255, 255, 255, 0.3);
-            border-top: 3px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 1rem;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-    `;
+    // Small delay before hiding (optional)
+    setTimeout(() => {
+        loader.classList.add('hidden');
 
-    const loaderStyleSheet = document.createElement('style');
-    loaderStyleSheet.textContent = loaderStyles;
-    document.head.appendChild(loaderStyleSheet);
-    document.body.appendChild(loader);
-
-    // Hide loader after page load
-    window.addEventListener('load', () => {
+        // Remove from DOM after fade out
         setTimeout(() => {
-            loader.style.opacity = '0';
-            setTimeout(() => {
-                document.body.removeChild(loader);
-                document.head.removeChild(loaderStyleSheet);
-            }, 500);
-        }, 1000);
-    });
-}
+            loader.remove();
+        }, 500); // match CSS transition time
+    }, 500); // loader visible for 1 second
+});
+
 
 // Initialize loading screen
 initLoadingScreen();
@@ -471,7 +419,7 @@ function initSkillLevelIndicators() {
         }, 300);
     });
 }
-// document.addEventListener('DOMContentLoaded', initSkillLevelIndicators);
+document.addEventListener('DOMContentLoaded', initSkillLevelIndicators);
 // Add progress bar styles
 const progressStyles = `
     .skill-progress {
@@ -530,66 +478,6 @@ function initDarkMode() {
     darkModeToggle.className = 'dark-mode-toggle';
     darkModeToggle.setAttribute('aria-label', 'Toggle dark mode');
 
-    // Add dark mode toggle styles
-    const darkModeStyles = `
-        .dark-mode-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            cursor: pointer;
-            box-shadow: var(--shadow-lg);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-        
-        .dark-mode-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: var(--shadow-xl);
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            --bg-color: #1a1a1a;
-            --text-color: #e0e0e0;
-            --card-bg: #2d2d2d;
-            --border-color: #404040;
-            --primary-color: #4a90e2;
-            --secondary-color: #666;
-            --accent-color: #f39c12;
-        }
-
-        body.dark-mode .dark-mode-toggle {
-            background: #f39c12;
-        }
-
-        body.dark-mode .dark-mode-toggle i:before {
-            content: "\\f185"; /* sun icon */
-        }
-
-        /* Dark mode navbar adjustments */
-        body.dark-mode #navbar {
-            background: rgba(26, 26, 26, 0.95) !important;
-            backdrop-filter: blur(10px);
-        }
-
-        body.dark-mode #navbar.scrolled {
-            background: rgba(26, 26, 26, 0.98) !important;
-        }
-        .skills-grid .skill-category {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-        }
-    `;
-
-    const darkModeStyleSheet = document.createElement('style');
-    darkModeStyleSheet.textContent = darkModeStyles;
-    document.head.appendChild(darkModeStyleSheet);
     document.body.appendChild(darkModeToggle);
 
     // Check for saved dark mode preference or default to light mode

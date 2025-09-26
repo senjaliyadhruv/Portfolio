@@ -52,6 +52,9 @@ body {
     background-color: var(--bg-primary);
     overflow-x: hidden;
     transition: var(--transition);
+    scroll-behavior: smooth;
+    /* Prevent elastic scrolling on iOS */
+    -webkit-overflow-scrolling: touch;
 }
 
 .container {
@@ -60,76 +63,7 @@ body {
     padding: 0 2rem;
 }
 
-/* Background Animation */
-.bg-animation {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    opacity: 0.8;
-}
 
-body.dark-mode .bg-animation {
-    opacity: 0.3;
-}
-
-.cloud {
-    position: absolute;
-    background: linear-gradient(45deg,
-            rgba(14, 165, 233, 0.1),
-            rgba(59, 130, 246, 0.05));
-    border-radius: 50px;
-    animation: float 20s infinite linear;
-}
-
-body.dark-mode .cloud {
-    background: linear-gradient(45deg,
-            rgba(14, 165, 233, 0.05),
-            rgba(59, 130, 246, 0.02));
-}
-
-.cloud1 {
-    width: 100px;
-    height: 50px;
-    top: 20%;
-    left: -50px;
-    animation-duration: 25s;
-}
-
-.cloud2 {
-    width: 150px;
-    height: 75px;
-    top: 60%;
-    left: -75px;
-    animation-duration: 35s;
-    animation-delay: -10s;
-}
-
-.cloud3 {
-    width: 80px;
-    height: 40px;
-    top: 40%;
-    left: -40px;
-    animation-duration: 30s;
-    animation-delay: -20s;
-}
-
-@keyframes float {
-    0% {
-        transform: translateX(-100px) translateY(0px) rotate(0deg);
-    }
-
-    50% {
-        transform: translateX(calc(100vw + 50px)) translateY(-20px) rotate(180deg);
-    }
-
-    100% {
-        transform: translateX(calc(200vw + 100px)) translateY(0px) rotate(360deg);
-    }
-}
 
 /* Navigation */
 .navbar {
@@ -139,8 +73,12 @@ body.dark-mode .cloud {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border-color);
-    z-index: 1000;
+    z-index: 9998;
     transition: var(--transition);
+    /* Prevent shifting by using consistent height */
+    height: 70px;
+    display: flex;
+    align-items: center;
 }
 
 body.dark-mode .navbar {
@@ -161,10 +99,12 @@ body.dark-mode .navbar.scrolled {
 .nav-container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 1rem 2rem;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 .nav-logo {
@@ -221,6 +161,9 @@ body.dark-mode .navbar.scrolled {
     flex-direction: column;
     cursor: pointer;
     padding: 0.5rem;
+    /* Add fixed positioning relative to navbar */
+    position: relative;
+    z-index: 10000;
 }
 
 .hamburger span {
@@ -571,31 +514,31 @@ body.dark-mode .profile-photo:hover {
 /* IMPROVED: Smooth orbital animations with better spacing and natural movement */
 @keyframes smooth-orbit-1 {
     0% {
-        transform: rotate(0deg) translateX(240px) rotate(0deg);
+        transform: rotate3d(0deg) translateX(240px) rotate3d(0deg);
     }
 
     100% {
-        transform: rotate(360deg) translateX(240px) rotate(-360deg);
+        transform: rotate3d(360deg) translateX(240px) rotate3d(-360deg);
     }
 }
 
 @keyframes smooth-orbit-2 {
     0% {
-        transform: rotate(0deg) translateX(160px) rotate(0deg);
+        transform: rotate3d(0deg) translateX(160px) rotate3d(0deg);
     }
 
     100% {
-        transform: rotate(360deg) translateX(160px) rotate(-360deg);
+        transform: rotate3d(360deg) translateX(160px) rotate3d(-360deg);
     }
 }
 
 @keyframes smooth-orbit-3 {
     0% {
-        transform: rotate(0deg) translateX(200px) rotate(0deg);
+        transform: rotate3d(0deg) translateX(200px) rotate3d(0deg);
     }
 
     100% {
-        transform: rotate(360deg) translateX(200px) rotate(-360deg);
+        transform: rotate3d(360deg) translateX(200px) rotate3d(-360deg);
     }
 }
 
@@ -980,6 +923,16 @@ body.dark-mode .profile-photo:hover {
 
 }
 
+@media screen and (max-width: 768px) {
+
+    /* Prevent zoom on input focus */
+    input[type="text"],
+    input[type="email"],
+    textarea {
+        font-size: 16px;
+    }
+}
+
 /* Extra Small Screens (480px and below) */
 @media (max-width: 576px) {
     .profile-photo-container {
@@ -1114,13 +1067,48 @@ body.dark-mode .profile-photo:hover {
         }
     }
 
+
+}
+
+@media (max-width: 576px) {
     .dark-mode-toggle {
-        bottom: 25px;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 15px);
         right: 15px;
         width: 45px;
         height: 45px;
     }
+
+    /* Ensure consistent navbar height on small screens */
+    .navbar {
+        height: 60px;
+    }
+
+    .nav-container {
+        height: 60px;
+        padding: 0 1rem;
+    }
+
+    .nav-menu {
+        top: 60px;
+        max-height: calc(100vh - 60px);
+    }
+
+    .nav-logo {
+        font-size: 1.2rem;
+    }
+
+    .hamburger {
+        width: 35px;
+        height: 35px;
+    }
+
+    .hamburger span {
+        width: 18px;
+        height: 2px;
+        margin: 1.5px 0;
+    }
 }
+
 
 /* Ultra Small Screens (360px and below) */
 @media (max-width: 360px) {
@@ -1898,7 +1886,7 @@ section {
 /* Dark Mode Toggle */
 .dark-mode-toggle {
     position: fixed;
-    bottom: 20px;
+    bottom: env(safe-area-inset-bottom, 20px);
     right: 20px;
     width: 50px;
     height: 50px;
@@ -1908,21 +1896,52 @@ section {
     border: none;
     cursor: pointer;
     box-shadow: var(--shadow-lg);
-    transition: var(--transition);
+    transition: all 0.3s ease;
     z-index: 9999;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    /* Prevent shifting by using transform instead of position changes */
+    transform: translateZ(0);
 }
 
 .dark-mode-toggle:hover {
-    transform: scale(1.1);
+    transform: scale(0.9);
     box-shadow: var(--shadow-xl);
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --card-bg: #2d2d2d;
+    --border-color: #404040;
+    --primary-color: #4a90e2;
+    --secondary-color: #666;
+    --accent-color: #f39c12;
 }
 
 body.dark-mode .dark-mode-toggle {
     background: #f39c12;
+}
+
+body.dark-mode .dark-mode-toggle i:before {
+    content: "\f185";
+    /* sun icon */
+
+}
+
+/* Dark mode navbar adjustments */
+body.dark-mode #navbar {
+    background: rgba(26, 26, 26, 0.95) !important;
+    backdrop-filter: blur(10px);
+}
+
+body.dark-mode #navbar.scrolled {
+    background: rgba(26, 26, 26, 0.98) !important;
+}
+
+.skills-grid .skill-category {
+    background: var(--card-bg);
+    border: 1px solid var(--border-color);
 }
 
 /* Footer */
@@ -2029,15 +2048,37 @@ body.dark-mode .footer-links a {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 70px;
+        top: 60px;
         flex-direction: column;
         background-color: var(--card-bg);
         width: 100%;
         text-align: center;
-        transition: 0.3s;
+        transition: left 0.3s ease;
         box-shadow: var(--shadow-lg);
-        padding: 2rem 0;
+        padding: 1rem 0;
         border-top: 1px solid var(--border-color);
+        /* Prevent shifting by using vh units that account for mobile browsers */
+        max-height: calc(100vh - 70px);
+        overflow-y: auto;
+        /* Use transform for better performance */
+        transform: translateX(0);
+    }
+
+    /* Prevent hamburger from shifting */
+    .hamburger {
+        width: 40px;
+        height: 40px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hamburger span {
+        width: 20px;
+        height: 2px;
+        background: var(--text-primary);
+        margin: 2px 0;
+        transition: var(--transition);
+        border-radius: 1px;
     }
 
     .nav-menu.active {
@@ -2066,9 +2107,13 @@ body.dark-mode .footer-links a {
         gap: 1rem;
     }
 
-    .hero-title {
-        font-size: 2.5rem;
+    .nav-container {
+        padding: 0 1rem;
+        height: 70px;
+    }
 
+    .nav-logo {
+        font-size: 1.3rem;
     }
 
     .hero-visual {
@@ -2117,9 +2162,7 @@ body.dark-mode .footer-links a {
         padding: 0 1rem;
     }
 
-    .nav-container {
-        padding: 1rem;
-    }
+
 }
 
 @media (max-width: 480px) {
@@ -2196,32 +2239,42 @@ body.dark-mode .footer-links a {
 }
 
 /* Loading Animation */
-.loading-overlay {
+/* Loader Overlay */
+#loader {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--bg-primary);
+    background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #6366f1 100%);
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 9999;
+    align-items: center;
+    z-index: 99993;
+    opacity: 1;
     transition: opacity 0.5s ease;
 }
 
-.loading-overlay.hidden {
+/* Loader hidden state */
+#loader.hidden {
     opacity: 0;
     pointer-events: none;
 }
 
-.loader {
+/* Loader content */
+.loader-content {
+    text-align: center;
+    color: white;
+}
+
+.loader-spinner {
     width: 50px;
     height: 50px;
-    border: 4px solid var(--bg-tertiary);
-    border-top: 4px solid var(--primary-color);
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
     border-radius: 50%;
     animation: spin 1s linear infinite;
+    margin: 0 auto 1rem;
 }
 
 @keyframes spin {
@@ -2233,6 +2286,7 @@ body.dark-mode .footer-links a {
         transform: rotate(360deg);
     }
 }
+
 
 /* Scroll Progress Bar */
 .scroll-progress {
@@ -2268,6 +2322,19 @@ body.dark-mode .footer-links a {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent-color);
+}
+
+
+@supports (-webkit-touch-callout: none) {
+    .navbar {
+        /* Use -webkit-fill-available for better iOS support */
+        width: -webkit-fill-available;
+    }
+
+    .dark-mode-toggle {
+        /* iOS safe area support */
+        bottom: calc(env(safe-area-inset-bottom) + 20px);
+    }
 }
 
 /* Print Styles */
