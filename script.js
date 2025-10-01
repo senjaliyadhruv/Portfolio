@@ -333,21 +333,21 @@ window.addEventListener('load', () => {
 // Add interactive skill level indicators
 function initSkillLevelIndicators() {
     const skillItems = document.querySelectorAll('.skill-item');
-    console.log('Found skill items:', skillItems.length); // Debug
+    // console.log('Found skill items:', skillItems.length); // Debug
 
     skillItems.forEach((item, index) => {
         const percentage = item.querySelector('.percentage');
         const progressFill = item.querySelector('.progress-fill');
 
-        console.log(`Item ${index}:`, {
-            hasPercentage: !!percentage,
-            hasProgressFill: !!progressFill,
-            percentageText: percentage?.textContent
-        }); // Debug
+        // console.log(`Item ${index}:`, {
+        //     hasPercentage: !!percentage,
+        //     hasProgressFill: !!progressFill,
+        //     percentageText: percentage?.textContent
+        // }); // Debug
 
         if (percentage && progressFill) {
             const level = parseInt(percentage.textContent);
-            console.log(`Setting width to: ${level}%`); // Debug
+            // console.log(`Setting width to: ${level}%`); // Debug
 
             progressFill.style.width = '0%';
 
