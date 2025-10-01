@@ -276,78 +276,6 @@ function initNavbarScrollEffect() {
     });
 }
 
-// Floating icons animation
-function initFloatingIcons() {
-    const icons = document.querySelectorAll('.icon-float');
-
-    icons.forEach((icon, index) => {
-        // Add random rotation and movement
-        setInterval(() => {
-            const randomX = Math.random() * 10 - 5;
-            const randomY = Math.random() * 10 - 5;
-            const randomRotate = Math.random() * 10 - 5;
-
-            icon.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
-        }, 2000 + index * 500);
-    });
-}
-
-// Initialize floating icons after DOM load
-document.addEventListener('DOMContentLoaded', function () {
-    setTimeout(initFloatingIcons, 1000);
-});
-
-// Add CSS animations via JavaScript
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-    
-    @keyframes slideInLeft {
-        from {
-            opacity: 0;
-            transform: translateX(-50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-    
-    @keyframes pulse {
-        0%, 100% {
-            transform: scale(1);
-        }
-        50% {
-            transform: scale(1.05);
-        }
-    }
-    
-    .skill-tag:hover {
-        animation: pulse 0.6s ease;
-    }
-    
-    .project-card {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    
-    .project-card.visible {
-        opacity: 1;
-        transform: translateX(0);
-        transition: all 0.6s ease;
-    }
-`;
-
-document.head.appendChild(style);
 
 // Parallax effect for hero section
 function initParallaxEffect() {
@@ -402,74 +330,35 @@ window.addEventListener('load', () => {
 });
 
 
-// Initialize loading screen
-initLoadingScreen();
-
 // Add interactive skill level indicators
 function initSkillLevelIndicators() {
     const skillItems = document.querySelectorAll('.skill-item');
+    console.log('Found skill items:', skillItems.length); // Debug
 
-    skillItems.forEach(item => {
-        const skillName = item.querySelector('.skill-name');
-        const percentage = item.querySelector('.percentage').textContent;
-        const level = parseInt(percentage);
+    skillItems.forEach((item, index) => {
+        const percentage = item.querySelector('.percentage');
         const progressFill = item.querySelector('.progress-fill');
-        setTimeout(() => {
-            progressFill.style.width = level + '%';
-        }, 300);
+
+        console.log(`Item ${index}:`, {
+            hasPercentage: !!percentage,
+            hasProgressFill: !!progressFill,
+            percentageText: percentage?.textContent
+        }); // Debug
+
+        if (percentage && progressFill) {
+            const level = parseInt(percentage.textContent);
+            console.log(`Setting width to: ${level}%`); // Debug
+
+            progressFill.style.width = '0%';
+
+            setTimeout(() => {
+                progressFill.style.width = level + '%';
+            }, 300);
+        }
     });
 }
+
 document.addEventListener('DOMContentLoaded', initSkillLevelIndicators);
-// Add progress bar styles
-const progressStyles = `
-    .skill-progress {
-        margin-top: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    .skill-progress-bar {
-        height: 8px;
-        background: var(--bg-gradient);
-        border-radius: 4px;
-        flex-grow: 1;
-        position: relative;
-        overflow: hidden;
-    }
-    
-    .skill-progress-bar::after {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-        animation: shimmer 2s infinite;
-    }
-    
-    @keyframes shimmer {
-        0% { left: -100%; }
-        100% { left: 100%; }
-    }
-    
-    .skill-percentage {
-        font-size: 0.8rem;
-        font-weight: 600;
-        color: var(--primary-color);
-        min-width: 35px;
-    }
-`;
-
-const progressStyleSheet = document.createElement('style');
-progressStyleSheet.textContent = progressStyles;
-document.head.appendChild(progressStyleSheet);
-
-// Initialize skill level indicators after DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(initSkillLevelIndicators, 500);
-});
 
 // Dark mode toggle with full functionality
 function initDarkMode() {
@@ -525,9 +414,6 @@ document.getElementById('contactForm').addEventListener('submit', function (even
     submitBtn.textContent = 'Sending...';
     submitBtn.disabled = true;
 
-    // Hide previous messages
-    // document.getElementById('successMessage').style.display = 'none';
-    // document.getElementById('errorMessage').style.display = 'none';
 
     // Send email
     emailjs.sendForm('service_biqy35b', 'template_6ad8iqg', this)

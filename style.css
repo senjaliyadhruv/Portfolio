@@ -1072,7 +1072,7 @@ body.dark-mode .profile-photo:hover {
 
 @media (max-width: 576px) {
     .dark-mode-toggle {
-        bottom: calc(env(safe-area-inset-bottom, 0px) + 15px);
+        bottom: 20px;
         right: 15px;
         width: 45px;
         height: 45px;
@@ -1496,6 +1496,18 @@ section {
     animation: gcp-gradient-element 4s ease infinite;
 }
 
+@keyframes gcp-gradient-element {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
 .skill-name {
     color: #ffffff;
 }
@@ -1513,7 +1525,7 @@ section {
 }
 
 .skill-item.gcp:hover .skill-name {
-    color: #4285f4;
+    color: #f44242;
 }
 
 .skill-item:hover {
@@ -1525,13 +1537,10 @@ section {
     color: var(--text-primary);
 }
 
-.skills-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    max-width: 800px;
-    width: 100%;
+.skill-item:hover .percentage {
+    color: var(--primary-color);
 }
+
 
 .skill-category {
     background: white;
@@ -1602,6 +1611,36 @@ section {
     left: 100%;
 }
 
+.skill-progress {
+    margin-top: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-bar {
+    height: 8px;
+    background: #e0e0e0;
+    border-radius: 4px;
+    flex: 1;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--bg-gradient);
+    width: 0%;
+    transition: width 1.5s ease-out;
+}
+
+.percentage {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    min-width: 35px;
+}
+
+
 /* Responsive design */
 @media (max-width: 768px) {
     .skills-container {
@@ -1619,43 +1658,6 @@ section {
     }
 }
 
-/* Skill Progress Bars */
-.skill-progress {
-    margin-top: 0.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-}
-
-.progress-bar {
-    height: 8px;
-    background: var(--bg-tertiary);
-    border-radius: 4px;
-    flex-grow: 1;
-    position: relative;
-    overflow: hidden;
-}
-
-.progress-fill {
-    height: 100%;
-    background: var(--bg-gradient);
-    width: 0;
-    transition: width 1s ease;
-}
-
-.percentage {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--bg-primary);
-    min-width: 35px;
-}
-
-.skill-item:hover .percentage {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: var(--primary-color);
-    min-width: 35px;
-}
 
 /* Experience Section */
 .experience {
@@ -1886,7 +1888,7 @@ section {
 /* Dark Mode Toggle */
 .dark-mode-toggle {
     position: fixed;
-    bottom: env(safe-area-inset-bottom, 20px);
+    bottom: 15px;
     right: 20px;
     width: 50px;
     height: 50px;
@@ -2239,7 +2241,6 @@ body.dark-mode .footer-links a {
 }
 
 /* Loading Animation */
-/* Loader Overlay */
 #loader {
     position: fixed;
     top: 0;
